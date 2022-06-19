@@ -10,13 +10,13 @@ def knock_knock(sid,stage):
 	formdata = {'username' : 'sofce' , 'password' : 'sofcesofce', 'sid' : sid, 'login' : 'Login','autologin' : 'on', 'redirect' : './index.php'}
 	if stage == 1:
 		#get cookies
-		r = s.get(f"https://www.sof1.org/index.php")
+		r = s.get("https://www.sof1.org/index.php")
 		#r = s.get("http://localhost:8765")
 	if stage == 2:
-		r = s.get(f"https://www.sof1.org/ucp.php?mode=login&sid={sid}")
+		r = s.get("https://www.sof1.org/ucp.php?mode=login&sid={sid}")
 	elif stage == 3:
 		#prepare for redirect
-		r = s.post(f"https://www.sof1.org/ucp.php?mode=login",data=formdata,headers={'Referer': f"https://www.sof1.org/ucp.php?mode=login&sid={sid}","Origin" : "https://www.sof1.org"})
+		r = s.post("https://www.sof1.org/ucp.php?mode=login",data=formdata,headers={'Referer': "https://www.sof1.org/ucp.php?mode=login&sid={}".format(sid),"Origin" : "https://www.sof1.org"})
 		#r = s.post("http://localhost:8765",data=formdata)
 
 	print(r.status_code)
@@ -36,7 +36,7 @@ def knock_knock(sid,stage):
 		#p = urlparse(r.headers['location'])
 		#given_sid = urlparse.parse_qs(p.query)['sid'][0]
 		given_sid = s.cookies["phpbb3_sms0f1_sid"]
-		print(f"your sid is : {given_sid}")
+		print("your sid is : {}".format(given_sid))
 		#sys.exit(0)
 		#pass
 	print(s.cookies.get_dict())
@@ -58,7 +58,7 @@ s.headers.update( {"User-Agent" : "Mozilla/5.0 (X11; CrOS aarch64 13597.84.0) Ap
 #when you do not specify cookie, you receive cookie
 knock_knock("0000",1)
 new_sid = s.cookies["phpbb3_sms0f1_sid"]
-print(f"here it is : {new_sid}")
+print("here it is : {}".format(new_sid))
 
 knock_knock(new_sid,2)
 #sys.exit(0)

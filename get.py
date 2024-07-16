@@ -7,7 +7,7 @@ def errorExit(r):
 		sys.exit(1)
 
 version = "7"
-url = f"https://www.sof1.org/download/Soldier_of_Fortune_Community_Edition_V{version}.exe"
+url = f"https://beta4.uk/download/SoF_CE_V{version}.exe"
 
 s = requests.Session()
 s.headers.update({
